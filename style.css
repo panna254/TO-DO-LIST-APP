@@ -1,18 +1,34 @@
+:root {
+  --bg: #f4f7f8;
+  --container-bg: #fff;
+  --text: #222;
+  --primary: #28a745;
+  --primary-hover: #218838;
+  --border: #ccc;
+  --todo-bg: #f9f9f9;
+  --todo-hover: #f1f1f1;
+  --category: #888;
+  --tags: #4caf50;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background: #f4f7f8;
+  background: var(--bg);
+  color: var(--text);
   display: flex;
   justify-content: center;
   padding: 50px;
+  transition: background 0.3s, color 0.3s;
 }
 
 .container {
-  background: white;
+  background: var(--container-bg);
   padding: 30px;
   width: 500px;
   max-width: 98vw;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s, box-shadow 0.2s;
 }
 
 h1 {
@@ -38,8 +54,21 @@ button[type="submit"] {
   align-self: stretch;
 }
 
+button, .delete-btn {
+  background-color: var(--primary);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  font-weight: bold;
+  line-height: 20px;
+  transition: background 0.2s, color 0.2s;
+}
+
 button:hover {
-  background-color: #218838;
+  background-color: var(--primary-hover);
 }
 
 #todo-list {
@@ -53,6 +82,8 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--todo-bg);
+  transition: background 0.2s;
 }
 
 .todo-item.completed {
@@ -61,11 +92,6 @@ button:hover {
 }
 
 .delete-btn {
-  background: #dc3545;
-  border: none;
-  color: white;
-  border-radius: 50%;
-  cursor: pointer;
   width: 24px;
   height: 24px;
   font-weight: bold;
@@ -74,13 +100,13 @@ button:hover {
 
 .category {
   font-size: 0.9em;
-  color: #888;
+  color: var(--category);
   margin-left: 8px;
 }
 
 .tags {
   font-size: 0.85em;
-  color: #4caf50;
+  color: var(--tags);
   margin-left: 8px;
 }
 
@@ -152,23 +178,43 @@ button:hover {
 }
 
 /* Modern look for desktop */
-.container {
-  transition: box-shadow 0.2s;
-}
 .container:hover {
   box-shadow: 0 4px 24px rgba(44, 62, 80, 0.13);
 }
 
-button, .delete-btn {
-  transition: background 0.2s, color 0.2s;
+.todo-item:hover {
+  background: var(--todo-hover);
 }
 
-.todo-item {
-  border-radius: 6px;
-  margin-bottom: 8px;
-  background: #f9f9f9;
-  transition: background 0.2s;
+/* Dark mode styles */
+.dark-mode {
+  --bg: #181a1b;
+  --container-bg: #23272b;
+  --text: #f4f7f8;
+  --primary: #4caf50;
+  --primary-hover: #388e3c;
+  --border: #444;
+  --todo-bg: #23272b;
+  --todo-hover: #2c3136;
+  --category: #b0b0b0;
+  --tags: #81c784;
 }
-.todo-item:hover {
-  background: #f1f1f1;
+
+.dark-mode .container {
+  box-shadow: 0 0 16px rgba(0,0,0,0.5);
+}
+
+.dark-mode-toggle {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.dark-mode-toggle label {
+  font-size: 1em;
+  cursor: pointer;
+  color: var(--text);
+}
+.dark-mode-toggle input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--primary);
 }
