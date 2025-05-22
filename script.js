@@ -139,3 +139,28 @@ function deleteTodo(id, listItem) {
 function saveTodos() {
   localStorage.setItem('todos', JSON.stringify(todos));
 }
+
+// Dark mode toggle logic
+const darkModeSwitch = document.getElementById('dark-mode-switch');
+
+function setDarkMode(enabled) {
+  if (enabled) {
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('darkMode', 'enabled');
+    darkModeSwitch.checked = true;
+  } else {
+    document.body.classList.remove('dark-mode');
+    localStorage.setItem('darkMode', 'disabled');
+    darkModeSwitch.checked = false;
+  }
+}
+
+darkModeSwitch.addEventListener('change', (e) => {
+  setDarkMode(e.target.checked);
+});
+
+// On load, apply dark mode if previously set
+window.addEventListener('DOMContentLoaded', () => {
+  const darkPref = localStorage.getItem('darkMode');
+  setDarkMode(darkPref === 'enabled');
+});
